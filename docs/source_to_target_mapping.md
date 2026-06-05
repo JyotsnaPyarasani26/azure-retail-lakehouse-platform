@@ -1,83 +1,135 @@
-Source to Target Mapping
-Source Tables
-bronze_orders
+# Source to Target Mapping
 
-Primary Key:
+## Source Tables
 
-order_id
-bronze_order_items
+### bronze_orders
+**Primary Key**
+- order_id
 
-Primary Key:
+### bronze_order_items
+**Primary Key**
+- order_id
+- order_item_id
 
-order_id
-order_item_id
-bronze_payments
+### bronze_payments
+**Primary Key**
+- order_id
 
-Primary Key:
+### bronze_reviews
+**Primary Key**
+- review_id
 
-order_id
-bronze_reviews
+### bronze_customers
+**Primary Key**
+- customer_id
 
-Primary Key:
+### bronze_products
+**Primary Key**
+- product_id
 
-review_id
-bronze_customers
+### bronze_sellers
+**Primary Key**
+- seller_id
 
-Primary Key:
+### bronze_geolocation
+**Primary Key**
+- geolocation_zip_code_prefix
 
-customer_id
-bronze_products
+### bronze_category_translation
+**Primary Key**
+- product_category_name
 
-Primary Key:
+---
 
-product_id
-bronze_sellers
+# Relationships
 
-Primary Key:
+| Parent Table | Child Table | Join Column |
+|-------------|-------------|-------------|
+| bronze_customers | bronze_orders | customer_id |
+| bronze_orders | bronze_order_items | order_id |
+| bronze_orders | bronze_payments | order_id |
+| bronze_orders | bronze_reviews | order_id |
+| bronze_products | bronze_order_items | product_id |
+| bronze_sellers | bronze_order_items | seller_id |
+| bronze_category_translation | bronze_products | product_category_name |
 
-seller_id
-bronze_geolocation
+---
 
-Primary Key:
+# Gold Layer Design
 
-geolocation_zip_code_prefix
-bronze_category_translation
+## Fact Table
 
-Primary Key:
+### fact_sales
 
-product_category_name
-Relationships
+Contains:
+- order_id
+- customer_id
+- product_id
+- seller_id
+- payment_value
+- freight_value
+- order_purchase_timestamp
+- order_delivered_customer_date
 
-orders.customer_id
-→ customers.customer_id
+---
 
-order_items.order_id
-→ orders.order_id
+## Dimension Tables
 
-order_items.product_id
-→ products.product_id
+### dim_customer
+Contains customer attributes and location information.
 
-order_items.seller_id
-→ sellers.seller_id
+### dim_product
+Contains product details and translated category names.
 
-payments.order_id
-→ orders.order_id
+### dim_seller
+Contains seller information and seller location.
 
-reviews.order_id
-→ orders.order_id
+### dim_date
+Contains:
+- date_key
+- day
+- month
+- quarter
+- year
+- week
 
-products.product_category_name
-→ category_translation.product_category_name
+---
 
-Gold Layer Design
+# Data Flow
 
-Fact Table:
+Raw CSV Files
+↓
 
-fact_sales
+Bronze Layer
+- bronze_orders
+- bronze_order_items
+- bronze_payments
+- bronze_reviews
+- bronze_customers
+- bronze_products
+- bronze_sellers
+- bronze_geolocation
+- bronze_category_translation
 
-Dimension Tables:
+↓
 
-dim_customer
-dim_product
-dim_seller
-dim_date
+Silver Layer
+- silver_orders
+- silver_customers
+- silver_products
+- silver_sellers
+- silver_payments
+- silver_reviews
+
+↓
+
+Gold Layer
+- fact_sales
+- dim_customer
+- dim_product
+- dim_seller
+- dim_date
+
+↓
+
+Power BI Dashboard
