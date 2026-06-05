@@ -2,7 +2,7 @@
 
 ## Objective
 
-Build a Retail Lakehouse Platform using Databricks, Delta Lake, PySpark and SQL to analyze e-commerce sales performance.
+Building a Retail Lakehouse Platform using Databricks, Delta Lake, PySpark and SQL to analyze e-commerce sales performance.
 
 ---
 
