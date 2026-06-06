@@ -17,6 +17,7 @@ The framework uses:
 
 Incoming Data
 ↓
+
 Generate Record Hash
 ↓
 Compare Against Existing Records
