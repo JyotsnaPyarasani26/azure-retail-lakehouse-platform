@@ -16,16 +16,25 @@ The framework uses:
 ## Process Flow
 
 Incoming Data
+
 ↓
 
 Generate Record Hash
+
 ↓
+
 Compare Against Existing Records
+
 ↓
+
 Update Changed Records
+
 ↓
+
 Insert New Records
+
 ↓
+
 Maintain Audit Metadata
 
 ## Metadata Columns
