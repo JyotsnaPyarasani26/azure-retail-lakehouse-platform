@@ -70,16 +70,15 @@ The solution ingests raw retail sales data, applies Medallion Architecture trans
 
 ### Sales & Product Performance
 
-![Sales & Product Performance](images/Sales%20&%20Product%20Performance.png)
+![Sales & Product Performance](images/Sales%20%26%20Product%20Performance.png)
 
 ### Operations & Delivery Analytics
 
-![Operations & Delivery Analytics](images/Operations%20&%20Delivery%20Analytics.png)
+![Operations & Delivery Analytics](images/Operations%20%26%20Delivery%20Analytics.png)
 
 ### Data Engineering Monitoring
 
 ![Data Engineering Monitoring](images/Data%20Engineering%20Monitoring.png)
-
 ## Business KPIs
 
 * Total Revenue
